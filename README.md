@@ -69,7 +69,7 @@ someMenu.dynamic(async (ctx, range) => {
         },
         buttonFn: async (ctx, data) => {
             await ctx.reply(
-                `Hello! My namie is ${data.name}, I'am ${data.dsc}`,
+                `Hello! My name is ${data.name}, I'am ${data.dsc}`,
             );
         },
     });

@@ -505,6 +505,7 @@ export async function createPagination(
                 displayType,
                 allowBackToMenu,
                 displayDataFn,
+                buttonFn,
             },
             menu,
             schema,
@@ -596,7 +597,13 @@ async function handleStaticData(
     menu: MenuRange<ContextSessionMenu>,
     schema: Schema,
 ) {
-    const { staticData, displayType, allowBackToMenu, displayDataFn } = options;
+    const {
+        staticData,
+        displayType,
+        allowBackToMenu,
+        displayDataFn,
+        buttonFn,
+    } = options;
     if (staticData) {
         /** Calculate the maximum number of pages based on the length of 'staticData'. */
         const maxPage = staticData.length;
@@ -604,6 +611,20 @@ async function handleStaticData(
         session.currentUserPage ??= 0;
 
         const { currentUserPage } = session;
+
+        if (displayType === "buttons" && !!buttonFn) {
+            staticData[currentUserPage].forEach(
+                (element: NestedArrayOrObject, i: number) => {
+                    menu.text(
+                        `${displayDataFn?.(element, 0)}`,
+                        (ctx: ContextSessionMenu) => {
+                            buttonFn(ctx, staticData[currentUserPage][i]);
+                        },
+                    ).row();
+                },
+            );
+        }
+
         /** Try to load a configuration object from a JSON file named "config." If it fails, use the 'schema' as a fallback. */
         const config: Config = (await loadJsonIfExist("config")) as Config ||
             (await loadSchema(schema)) as Config;
