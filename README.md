@@ -27,48 +27,59 @@ Function createPagination is main core of pagination on menu. There we are defin
 Static data
 
 ```js
-import { Bot, session } from "@grammyjs";
+import { Bot, session } from "grammy";
 import { Menu } from "@grammyjs/menu";
 import {
     createPagination,
-    parseArrayIntoObject,
+    parseArrayIntoObjects,
 } from "@grammyjs/menu-pagination";
 
 const bot = new Bot("");
 
-bot.use(session({
-    initial() {
-        return {};
+bot.use(
+    session({
+        initial() {
+            return {};
+        },
+    }),
+);
+
+const someMenu = new Menu("some-menu");
+
+const myData = [
+    { name: "John", dsc: "CEO" },
+    { name: "Kendrick", dsc: "Devops" },
+    {
+        name: "Leo",
+        dsc: "HR Agent",
     },
-}));
-
-const someMenu = new Menu();
-
-const myData = [{ name: "a", dsc: "b" }, { name: "c", dsc: "d" }, {
-    name: "e",
-    dsc: "f",
-}];
+];
 
 const elementsPerPage = 2;
 
-const parsedData = parseArrayIntoObject(myData, elementsPerPage);
+const parsedData = parseArrayIntoObjects(myData, elementsPerPage);
 
-someMenu.dynamic((ctx, range) => {
-    createPagination(someMenu, ctx, {
+someMenu.dynamic(async (ctx, range) => {
+    await createPagination(range, ctx, {
         allowBackToMenu: false,
+        displayType: "buttons",
         staticData: parsedData,
-        displayDataFn: (data, index) => {
+        displayDataFn: (data) => {
             return `${data.name}, ${data.dsc}`;
         },
-        displayType: "buttons",
+        buttonFn: async (ctx, data) => {
+            await ctx.reply(
+                `Hello! My namie is ${data.name}, I'am ${data.dsc}`,
+            );
+        },
     });
 });
 
-bot.command(
-    "pagination",
-    (ctx) =>
-        ctx.reply("Check this crazy pagination!", { reply_markup: someMenu }),
-);
+bot.use(someMenu);
+
+bot.command("pagination", (ctx) => {
+    ctx.reply("Check this crazy pagination!", { reply_markup: someMenu });
+});
 
 bot.start();
 ```
