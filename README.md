@@ -82,3 +82,5 @@ You can find more examples and documentation on [the plugin page on the website]
 - [ ] Add a middleware that extends ctx with ctx.replyWithPagination, so that you can display the first page of pagination without developer integration ( only for displayType "text")
 - [ ] Add more advanced(optimized) logic for memoization dynamicData
 - [ ] Add "numbers" schema
+- [ ] Add debug's with https://deno.land/x/debug/mod.ts
+- [ ] Add session cleanup if pagination is not used
