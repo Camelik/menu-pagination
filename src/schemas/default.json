@@ -1,0 +1,17 @@
+{
+    "maxBack": "<<",
+    "back": "<",
+    "displayedNumbers": "{page}/{maxPage}",
+    "next": ">",
+    "maxNext": ">>",
+    "backButton": "Back",
+    "template": [
+        "maxBack",
+        "back",
+        "displayedNumbers",
+        "next",
+        "maxNext",
+        "row",
+        "backButton"
+    ]
+}

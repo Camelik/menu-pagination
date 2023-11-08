@@ -1,0 +1,44 @@
+{
+    "name": "@grammyjs/menu-pagination",
+    "version": "1.0.0",
+    "description": "Pagination addon for Menu Plugin",
+    "homepage": "https://grammy.dev/plugins/menu-pagination",
+    "main": "./out/mod.js",
+    "type": "commonjs",
+    "scripts": {
+        "build": "deno2node tsconfig.json",
+        "prepare": "deno2node"
+    },
+    "bin": "./src/init.ts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Amir-Zouerami/plugin-template.git"
+    },
+    "exports": {
+        ".": "./out/mod.js"
+    },
+    "files": [
+        "out/"
+    ],
+    "author": "Camelik",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://grammy.dev/plugins/menu-pagination/issues"
+    },
+    "peerDependencies": {
+        "grammy": "^1.19.2"
+    },
+    "devDependencies": {
+        "deno2node": "1.0.0"
+    },
+    "keywords": [
+        "grammY",
+        "pagination",
+        "plugin"
+    ],
+    "dependencies": {
+        "fs": "^0.0.1-security",
+        "inquirer": "^9.2.11",
+        "jsonfile": "^6.1.0"
+    }
+}
