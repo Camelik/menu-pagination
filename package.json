@@ -2,7 +2,7 @@
     "name": "@grammyjs/menu-pagination",
     "version": "1.0.0",
     "description": "Pagination addon for Menu Plugin",
-    "homepage": "https://grammy.dev/plugins/menu-pagination",
+    "homepage": "https://github.com/grammyjs/menu-pagination",
     "main": "./out/mod.js",
     "type": "commonjs",
     "scripts": {
@@ -12,7 +12,7 @@
     "bin": "./src/init.ts",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Amir-Zouerami/plugin-template.git"
+        "url": "https://github.com/grammyjs/menu-pagination.git"
     },
     "exports": {
         ".": "./out/mod.js"
@@ -23,7 +23,7 @@
     "author": "Camelik",
     "license": "MIT",
     "bugs": {
-        "url": "https://grammy.dev/plugins/menu-pagination/issues"
+        "url": "https://github.com/grammyjs/menu-pagination/issues"
     },
     "peerDependencies": {
         "grammy": "^1.19.2"
