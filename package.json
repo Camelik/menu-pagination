@@ -6,8 +6,8 @@
     "main": "./out/mod.js",
     "type": "commonjs",
     "scripts": {
-        "init": "node -e \"require('./init.js')\"",
-        "build": "deno2node tsconfig.json"
+        "prepare": "npm run backport",
+        "backport": "deno2node tsconfig.json"
     },
     "bin": "./out/init.js",
     "repository": {
@@ -37,7 +37,7 @@
         "plugin"
     ],
     "dependencies": {
-        "inquirer": "^9.2.11",
-        "jsonfile": "^6.1.0"
+        "fs-extra": "^11.1.1",
+        "inquirer": "^9.2.11"
     }
 }

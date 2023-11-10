@@ -1,7 +1,5 @@
 "use strict";
-import { SessionFlavor } from "https://deno.land/x/grammy@v1.19.2/mod.ts";
-import { MenuFlavor } from "https://deno.land/x/grammy_menu@v1.2.1/menu.ts";
-import { Context, MenuRange } from "./deps.deno.ts";
+import { Context, MenuFlavor, MenuRange, SessionFlavor } from "./deps.deno.ts";
 import type {
     Config,
     DynamicObject,
@@ -107,10 +105,10 @@ export async function createPagination(
             dynamicDataFn,
         );
 
-        if (displayType === "buttons" && !!buttonFn) {
+        if (displayType === "buttons" && !!buttonFn && !!displayDataFn) {
             res.data.forEach((element: NestedArrayOrObject, i: number) => {
                 menu.text(
-                    `${displayDataFn?.(element, 0)}`,
+                    displayDataFn?.(element, i),
                     (ctx: ContextSessionMenu) => {
                         buttonFn(ctx, res.data[i]);
                     },
@@ -155,11 +153,11 @@ async function handleStaticData(
 
         const { currentUserPage } = session;
 
-        if (displayType === "buttons" && !!buttonFn) {
+        if (displayType === "buttons" && !!buttonFn && !!displayDataFn) {
             staticData[currentUserPage].forEach(
                 (element: number | string | object, i: number) => {
                     menu.text(
-                        `${displayDataFn?.(element, 0)}`,
+                        displayDataFn(element, i),
                         (ctx: ContextSessionMenu) => {
                             buttonFn(ctx, staticData[currentUserPage][i]);
                         },

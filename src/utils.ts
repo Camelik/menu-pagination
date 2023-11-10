@@ -3,9 +3,9 @@ import { existsSync, readJson } from "./deps.deno.ts";
 import { Config, Schema, SchemaOptions } from "./types.ts";
 
 const configFilePaths: Record<string, string> = {
-    "default": "./src/schemas/default.json",
-    "numbers": "./src/schemas/numbers.json",
-    "config": "./paginationConfig.json",
+    "default": "/schemas/default.json",
+    "numbers": "/schemas/numbers.json",
+    "config": "/paginationConfig.json",
 };
 /**
  * Loads the JSON from the specified configuration file if it exists.

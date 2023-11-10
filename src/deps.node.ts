@@ -1,5 +1,4 @@
-export { Menu } from "@grammyjs/menu";
-export type { MenuFlavour } from "@grammyjs/menu";
-export type { Context } from "@grammyjs/types";
-export { existsSync } from "fs";
-export { readFile as readJson, writeFile as writeJson } from "jsonfile";
+export { MenuRange } from "@grammyjs/menu";
+export type { MenuFlavor } from "@grammyjs/menu";
+export { pathExistsSync as existsSync, readJson, writeJson } from "fs-extra";
+export type { Context, SessionFlavor } from "grammy";
