@@ -6,10 +6,10 @@
     "main": "./out/mod.js",
     "type": "commonjs",
     "scripts": {
-        "build": "deno2node tsconfig.json",
-        "prepare": "deno2node"
+        "init": "node -e \"require('./init.js')\"",
+        "build": "deno2node tsconfig.json"
     },
-    "bin": "./src/init.ts",
+    "bin": "./out/init.js",
     "repository": {
         "type": "git",
         "url": "https://github.com/grammyjs/menu-pagination.git"
@@ -29,7 +29,7 @@
         "grammy": "^1.19.2"
     },
     "devDependencies": {
-        "deno2node": "1.0.0"
+        "deno2node": "1.10.1"
     },
     "keywords": [
         "grammY",
@@ -37,7 +37,6 @@
         "plugin"
     ],
     "dependencies": {
-        "fs": "^0.0.1-security",
         "inquirer": "^9.2.11",
         "jsonfile": "^6.1.0"
     }

@@ -1,6 +1,6 @@
-"use strict";
+#! /usr/bin/env node
 import { existsSync, readJson } from "./deps.deno.ts";
-import { Config, SchameOptions, Schema } from "./types.ts";
+import { Config, Schema, SchemaOptions } from "./types.ts";
 
 const configFilePaths: Record<string, string> = {
     "default": "./src/schemas/default.json",
@@ -31,7 +31,7 @@ export async function loadJsonIfExist(
     return await readJson(configFilePath) as Config;
 }
 
-export const SchemaOptions: SchameOptions = {
+export const schemaOptions: SchemaOptions = {
     "default": async () => {
         return await loadJsonIfExist("default");
     },
@@ -51,7 +51,7 @@ export const SchemaOptions: SchameOptions = {
  * It returns a promise that resolves to the loaded schema.
  */
 export async function loadSchema(schema: Schema) {
-    return await SchemaOptions[schema]();
+    return await schemaOptions[schema]();
 }
 /**
  * Parses an array into chunks of objects.

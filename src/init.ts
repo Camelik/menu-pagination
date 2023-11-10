@@ -1,4 +1,4 @@
-"use strict";
+#!/usr/bin/env node
 import { existsSync, writeJson } from "./deps.deno.ts";
 
 /**
@@ -33,7 +33,7 @@ async function paginationConfig(): Promise<boolean> {
             "next",
             "maxNext",
             "row",
-            "back",
+            "backButton",
         ],
     };
 
