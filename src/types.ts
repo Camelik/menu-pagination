@@ -6,6 +6,23 @@ export interface SchemaOptions {
     [key: string]: () => Promise<Config | undefined>;
 }
 
+/** A value, or a promise of a value */
+type MaybePromise<T> = T | Promise<T>;
+/** A potentially async function that takes a context and returns a string */
+type DynamicString<C extends Context> = (ctx: C) => MaybePromise<string>;
+/** A potentially dynamic string */
+type MaybeDynamicString<C extends Context> = string | DynamicString<C>;
+
+/** An object containing text and payload */
+interface TextAndPayload<C extends Context> {
+    /** Text to display */
+    text: MaybeDynamicString<C>;
+    /** Optional payload */
+    payload?: MaybeDynamicString<C>;
+}
+
+type ButtonType = "url" | "payment" | "webapp";
+
 /** Pagination Option's Types*/
 export type PaginationOptions = {
     dynamicData?: NestedArrayOrObject;
@@ -28,13 +45,18 @@ export type PaginationOptions = {
     /**
      * A function that generates dynamic data for the pagination component.
      */
-    // deno-lint-ignore no-explicit-any
-    dynamicDataFn?: (page: number) => Promise<{ maxPage: any; data: any }>;
+    dynamicDataFn?: (
+        // deno-lint-ignore no-explicit-any
+        page: number,
+    ) => Promise<{ maxPage: number; data: any; type: ButtonType }>;
     /**
      * A function responsible for displaying data in the pagination component.
      */
-    // deno-lint-ignore no-explicit-any
-    displayDataFn?: (data: any, index: number) => string;
+    displayDataFn?: (
+        // deno-lint-ignore no-explicit-any
+        data: any,
+        index: number,
+    ) => TextAndPayload<Context> | MaybeDynamicString<Context>;
     // deno-lint-ignore no-explicit-any
     buttonFn?: (ctx: Context, data: any) => void;
 };
